@@ -16,7 +16,7 @@ function ClickHandler () {
 
 	this.addClick = function (req, res) {
 		Users
-			.findOneAndUpdate({ 'github.id': req.user.github.id }, { $inc: { 'nbrClicks.clicks': 1 } })
+			.findOneAndUpdate({ 'github.id': req.user.github.id }, { $inc: { 'nbrClicks.clicks': 2 } })
 			.exec(function (err, result) {
 					if (err) { throw err; }
 

@@ -7,11 +7,19 @@ var User = new Schema({
 	github: {
 		id: String,
 		displayName: String,
-		username: String,
-      publicRepos: Number
+		username: String
 	},
-   nbrClicks: {
-      clicks: Number
+    votes: {
+        votes: [ { 
+            name: String, 
+            count: Number, 
+            id: { type:Schema.ObjectId, default: mongoose.Types.ObjectId },
+            options: [ { 
+                name: String, 
+                count: Number, 
+                id: { type:Schema.ObjectId, default: mongoose.Types.ObjectId }
+            } ]
+        } ]
    }
 });
 

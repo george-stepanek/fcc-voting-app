@@ -5,22 +5,48 @@
 		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
 	</head>
 
-	<header>
-		<p>Welcome, <span id="display-name"></span>! <a class="menu" href="/logout">(Logout)</a></p>
-	</header>
-
 	<body>
-		<div class="container">
-			<p><span id="options"></span></p>
-			<br />
-			<div class="btn-container">
-				<input type="text"></input>
-				<button type="submit" class="btn btn-add">ADD</button>
+		<nav class="navbar navbar-default">
+	      <div class="container-fluid">
+	          <div class="navbar-header navbar-brand">
+	          	<a href="\" style="text-decoration: none;">Voting App</a>
+	          </div>
+	          <div class="navbar-form navbar-right">
+	          	<span id="display-name"></span>&nbsp;&nbsp;
+	          	<a href="/logout"><button class="btn btn-success">Logout</button></a>
+	          </div>
+	      </div>
+	    </nav>
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3">&nbsp;</div>
+		        <div class="col-sm-6">
+		          <div class="panel panel-default">
+		            <div class="panel-heading">
+		              <h3 class="panel-title">Add a new vote:</h3>
+		            </div>
+		            <div class="panel-body">
+						<input type="text" placeholder="What is your vote question?"></input>
+						<div class="rhs-submit">
+							<button type="submit" class="btn vote-add">Add</button>
+						</div>
+					</div>
+		          </div>
+		          <div class="panel panel-default">
+		            <div class="panel-heading">
+		              <h3 class="panel-title">Review existing votes:</h3>
+		            </div>
+		            <div class="panel-body">
+						<p><span id="votes"></span></p>
+					</div>
+		          </div>				
+		        </div>
 			</div>
 		</div>
-		
+			
 		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<script type="text/javascript" src="common/ajax-functions.js"></script>
-		<script type="text/javascript" src="controllers/clickController.client.js"></script>
+		<script type="text/javascript" src="/common/ajax-functions.js"></script>
+		<script type="text/javascript" src="/controllers/voteController.client.js"></script>
 	</body>
 </html>

@@ -12,7 +12,7 @@ var User = new Schema({
     votes: {
         votes: [ { 
             name: String, 
-            count: Number, 
+            //count: Number, 
             id: { type:Schema.ObjectId, default: mongoose.Types.ObjectId },
             options: [ { 
                 name: String, 

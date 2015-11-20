@@ -1,7 +1,7 @@
 'use strict';
 
 var path = process.cwd();
-var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
+var VoteHandler = require(path + '/app/controllers/voteHandler.server.js');
 
 module.exports = function (app, passport) {
 
@@ -13,13 +13,18 @@ module.exports = function (app, passport) {
 		}
 	}
 
-	var clickHandler = new ClickHandler();
+	var voteHandler = new VoteHandler();
 
 	app.route('/')
 		.get(isLoggedIn, function (req, res) {
 			res.sendFile(path + '/public/index.html');
 		});
 
+	app.route('/vote/:id')
+		.get(function (req, res) {
+			res.sendFile(path + '/public/vote.html');
+		});
+		
 	app.route('/login')
 		.get(function (req, res) {
 			res.sendFile(path + '/public/login.html');
@@ -45,8 +50,8 @@ module.exports = function (app, passport) {
 			failureRedirect: '/login'
 		}));
 
-	app.route('/api/:id/clicks')
-		.get(isLoggedIn, clickHandler.getOptions)
-		.post(isLoggedIn, clickHandler.addOption)
-		.delete(isLoggedIn, clickHandler.deleteOption);
+	app.route('/api/:id/votes')
+		.get(isLoggedIn, voteHandler.getVotes)
+		.post(isLoggedIn, voteHandler.addVote)
+		.delete(isLoggedIn, voteHandler.deleteVote);
 };

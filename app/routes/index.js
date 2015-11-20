@@ -2,6 +2,7 @@
 
 var path = process.cwd();
 var VoteHandler = require(path + '/app/controllers/voteHandler.server.js');
+var OptionHandler = require(path + '/app/controllers/optionHandler.server.js');
 
 module.exports = function (app, passport) {
 
@@ -14,6 +15,7 @@ module.exports = function (app, passport) {
 	}
 
 	var voteHandler = new VoteHandler();
+	var optionHandler = new OptionHandler();
 
 	app.route('/')
 		.get(isLoggedIn, function (req, res) {
@@ -54,4 +56,9 @@ module.exports = function (app, passport) {
 		.get(isLoggedIn, voteHandler.getVotes)
 		.post(isLoggedIn, voteHandler.addVote)
 		.delete(isLoggedIn, voteHandler.deleteVote);
+		
+	app.route('/api/options/:vote')
+		.get(optionHandler.getOptions)
+		.post(optionHandler.addOption)
+		.delete(optionHandler.deleteOption);
 };

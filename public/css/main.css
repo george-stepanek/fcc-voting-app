@@ -11,6 +11,9 @@ input {
 }
 td {
 	width: 100%;
-	vertical-align: top;
+	vertical-align: center;
 	padding-top: 15px;
+}
+.spacer {
+	padding-right: 15px;
 }

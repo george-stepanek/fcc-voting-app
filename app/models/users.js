@@ -14,6 +14,7 @@ var User = new Schema({
             name: String, 
             count: Number,
             id: { type:Schema.ObjectId, default: mongoose.Types.ObjectId },
+            userid: String,
             options: [ { 
                 name: String, 
                 count: Number, 

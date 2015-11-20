@@ -1,6 +1,7 @@
 'use strict';
 
 var Users = require('../models/users.js');
+var Votes = require('../models/votes.js');
 
 function VoteHandler () {
 	this.getVotes = function (req, res) {

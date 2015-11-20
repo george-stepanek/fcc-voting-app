@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Votelizer</title>
+		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
+	</head>
+
+	<body>
+		<nav class="navbar navbar-default">
+	      <div class="container-fluid">
+	          <div class="navbar-header navbar-brand">
+	          	<a href="\" style="text-decoration: none;">Votelizer</a> &gt; <span id="vote-name"></span>
+	          </div>
+	          <div class="navbar-form navbar-right">
+	          	<span id="display-name"></span>&nbsp;&nbsp;
+	          	<a href="/logout"><button id="logout" class="btn btn-success">Logout</button></a>
+	          </div>
+	      </div>
+	    </nav>
+	    
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3">&nbsp;</div>
+		        <div class="col-sm-6">
+		          <div class="panel panel-default">
+		            <div class="panel-heading">
+		              <h3 class="panel-title">Add a new option:</h3>
+		            </div>
+		            <div class="panel-body">
+						<input type="text" placeholder="Option description"></input>
+						<div class="rhs-submit">
+							<button type="submit" class="btn option-add">Add</button>
+						</div>
+					</div>
+		          </div>
+		          <div class="panel panel-default">
+		            <div class="panel-heading">
+		              <h3 class="panel-title">Options:</h3>
+		            </div>
+		            <div class="panel-body">
+						<p><span id="options"></span></p>
+					</div>
+		          </div>				
+		        </div>
+			</div>
+		</div>	    
+	    
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script type="text/javascript" src="/common/ajax-functions.js"></script>
+		<script type="text/javascript" src="/controllers/optionController.client.js"></script>
+	</body>
+</html>	    

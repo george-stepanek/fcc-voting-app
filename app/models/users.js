@@ -8,20 +8,7 @@ var User = new Schema({
 		id: String,
 		displayName: String,
 		username: String
-	},
-    votes: {
-        votes: [ { 
-            name: String, 
-            count: Number,
-            id: { type:Schema.ObjectId, default: mongoose.Types.ObjectId },
-            userid: String,
-            options: [ { 
-                name: String, 
-                count: Number, 
-                id: { type:Schema.ObjectId, default: mongoose.Types.ObjectId }
-            } ]
-        } ]
-   }
+	}
 });
 
 module.exports = mongoose.model('User', User);

@@ -20,13 +20,14 @@
    var apiUrl = appUrl + '/api/:id/votes';
 
    function updateVotes (data) {
-      var votesObject = JSON.parse(data);
+      var votes = JSON.parse(data);
+      
       var output = "<table>";
-      for(var i = 0; i < votesObject.votes.length; i++) {
-         output = output + '<tr><td><a href="/vote/' + votesObject.votes[i].id + '" style="text-decoration: none;">' + 
-            votesObject.votes[i].name + '</a></td><td>' +
-            //votesObject.votes[i].count + '<button id="' + votesObject.votes[i].id + '" class="btn btn-vote">Vote</button>' +
-            '<button id="' + votesObject.votes[i].id + '" class="btn vote-delete">Delete</button></td></tr>';
+      for(var i = 0; i < votes.length; i++) {
+         output = output + '<tr><td><a href="/vote/' + 
+            votes[i].id + '" style="text-decoration: none;">' + 
+            votes[i].name + '</a></td><td><button id="' + 
+            votes[i].id + '" class="btn vote-delete">Delete</button></td></tr>';
       }
       $('#votes').html(output + "</table>");
       

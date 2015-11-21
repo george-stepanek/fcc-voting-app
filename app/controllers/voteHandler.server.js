@@ -1,27 +1,25 @@
 'use strict';
+'use strict';
 
-var Users = require('../models/users.js');
 var Votes = require('../models/votes.js');
 
 function VoteHandler () {
+	
 	this.getVotes = function (req, res) {
-		Users
-			.findOne({ 'github.id': req.user.github.id }, { '_id': false })
-			.exec(function (err, result) { if (err) { throw err; } res.json(result.votes); });
+		Votes.find({ 'userid': req.user.github.id })
+			.exec(function (err, result) { if (err) { throw err; } res.json(result); });			
 	};
+	
 	this.addVote = function (req, res) {
 		if(req.query.votename != undefined) {
-			var newVote = { name: req.query.votename };
-			Users
-				.findOneAndUpdate({ 'github.id': req.user.github.id }, { $push: { 'votes.votes': newVote } })
-				.exec(function (err, result) { if (err) { throw err; } res.json(result.votes); });
+			var newVote = { name: req.query.votename, userid: req.user.github.id };
+			Votes.create([newVote], function (err, result) { if (err) { throw err; } res.json(result); });
 		}
 	};
+	
 	this.deleteVote = function (req, res) {
 		if(req.query.voteid != undefined) {
-			Users
-				.findOneAndUpdate({ 'github.id': req.user.github.id }, { $pull: { "votes.votes" : { id: req.query.voteid } } })
-				.exec(function (err, result) { if (err) { throw err; } res.json(result.votes); });
+			Votes.findOneAndRemove({ 'id': req.query.voteid }, function (err, result) { if (err) { throw err; } res.json(result); });
 		}
 	};
 }

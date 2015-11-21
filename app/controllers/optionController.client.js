@@ -24,15 +24,16 @@
     var apiUrl = appUrl + '/api/options/' + voteId;
     
     function updateOptions (data) {
-        var optionsObject = JSON.parse(data);
-        $('#vote-name').html(optionsObject['name']);
+        var vote = JSON.parse(data);
+        $('#vote-name').html(vote.name);
         
         var output = "<table>";
-        for(var i = 0; i < optionsObject.options.length; i++) {
-            output = output + '<tr><td>' + optionsObject.options[i].name + '</td><td class="spacer">' +
-                (loggedIn ? '<button id="' + optionsObject.options[i].id + '" class="btn option-delete">Delete</button></td><td class="spacer">' : '') +
-                optionsObject.options[i].count + '&nbsp;votes</td><td>' + 
-                '<button id="' + optionsObject.options[i].id + '" class="btn option-vote">Vote</button></td></tr>';
+        for(var i = 0; i < vote.options.length; i++) {
+            output = output + '<tr><td>' + 
+                vote.options[i].name + '</td><td class="spacer">' + (loggedIn ? '<button id="' + 
+                vote.options[i].id + '" class="btn option-delete">Delete</button></td><td class="spacer">' : '') +
+                vote.options[i].count + '&nbsp;votes</td><td><button id="' + 
+                vote.options[i].id + '" class="btn option-vote">Vote</button></td></tr>';
         }
         $('#options').html(output + "</table>");
           

@@ -1,6 +1,8 @@
 'use strict';
 
 (function () {
+
+   var apiUrl = appUrl + '/api/:id/votes';
    
    ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', appUrl + '/api/:id', function (data) {
       try {
@@ -16,8 +18,6 @@
       if(e.keyCode == 13)
          $('.vote-add').click();
    });
-
-   var apiUrl = appUrl + '/api/:id/votes';
 
    function updateVotes (data) {
       var votes = JSON.parse(data);

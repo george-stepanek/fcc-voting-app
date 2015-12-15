@@ -1,6 +1,8 @@
 'use strict';
 
 (function () {
+    
+   google.load("visualization", "1", {packages:["corechart"]});
 
     var apiUrl = appUrl + '/api/options/' + window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
     var userid;
@@ -46,15 +48,33 @@
                 ajaxFunctions.ajaxRequest('GET', apiUrl, updateOptions);
             });
         });
+        
+        if(vote.options.length > 0) {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Option');
+            data.addColumn('number', 'Votes');
+            for(var i = 0; i < vote.options.length; i++ ) {
+                data.addRow([vote.options[i].name, vote.options[i].count]);
+            }
+            
+            var chart = new google.visualization.PieChart(document.getElementById('chart'));
+            chart.draw(data, { 
+                height: $(window).height() / 2,
+                width: $(window).width(),
+                is3D: true
+            });
+        } else {
+            $('#chart').empty();
+        }
     }
     
-    ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, updateOptions));
-    
-   $('.option-add').click( function () {
-      ajaxFunctions.ajaxRequest('POST', apiUrl + "?optionname=" + encodeURIComponent($('input').val()), function () {
-         ajaxFunctions.ajaxRequest('GET', apiUrl, updateOptions);
-      });
-      $('input').val('');
-   });
+    google.setOnLoadCallback(function () { ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, updateOptions )); });
+
+    $('.option-add').click( function () {
+        ajaxFunctions.ajaxRequest('POST', apiUrl + "?optionname=" + encodeURIComponent($('input').val()), function () {
+            ajaxFunctions.ajaxRequest('GET', apiUrl, updateOptions);
+        });
+        $('input').val('');
+    });
 
 })();
